@@ -11,6 +11,11 @@ let purchas = [];
 let attempts = 0;
 let maxAttempts = 25;
 
+let purchaeName=[];
+let vote=[];
+let view =[];
+
+
 let purchasImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
 
 function Survay(purchaseName) {
@@ -20,6 +25,7 @@ function Survay(purchaseName) {
     this.votes = 0;
 
     purchas.push(this);
+    purchaeName.push(this.purchaseName);
 
 }
 
@@ -27,6 +33,12 @@ for (let i = 0; i < purchasImg.length; i++) {
     new Survay(purchasImg[i]);
     console.log(purchas[i]);
 }
+let inds
+function ranDex() {
+     inds= (Math.floor(Math.random() * purchas.length));
+    console.log("index= " + inds);
+    return inds--;
+
 
 function ranDex() {
     return Math.floor(Math.random() * purchas.length);
@@ -36,11 +48,21 @@ let LImg = ranDex();
 let MImg = ranDex();
 let RImg = ranDex();
 
+
+
+function renderRanImg() {
+    
 function renderRanImg() {
     LImg = ranDex();
     MImg = ranDex();
     RImg = ranDex();
 
+    while ((LImg === MImg) || (MImg === RImg) || (LImg === RImg)  ) {
+       
+        LImg = ranDex();
+        MImg = ranDex();
+        RImg = ranDex();
+        
     while ((LImg === MImg) || (MImg === RImg) || (LImg === RImg)) {
         LImg = ranDex();
         MImg = ranDex();
@@ -58,12 +80,57 @@ function renderRanImg() {
 
 renderRanImg();
 
-
 lefImg.addEventListener('click', clickshand);
 midImg.addEventListener('click', clickshand);
 rigImg.addEventListener('click', clickshand);
 
 
+
+function chartRender() {
+
+    let ctx = document.getElementById('myChart').getContext('2d');
+let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: purchaeName,
+        datasets: [{
+            label: '# of Votes',
+            data: vote,
+            backgroundColor: [
+                'rgba(50, 255, 150, 0.9)',
+            ],
+            borderColor: [
+                'rgba(40, 175, 175, 0.3)',
+            ],
+            borderWidth: 2
+        },
+        {
+            label: '# of views',
+            data: view,
+            backgroundColor: [
+                'rgba(255, 255, 175)',
+            ],
+            borderColor: [
+                'rgba(190, 150, 150, 0.8)',
+            ],
+        
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+}
+
+
+
+function clickshand(event) {
+    attempts++;
 
 function clickshand(event) {
     if (attempts <= maxAttempts) {
@@ -87,11 +154,28 @@ function clickshand(event) {
             let liEl = document.createElement('li');
             liEl.textContent = `${purchas[i].purchaseName} has ${purchas[i].votes} votes and ${purchas[i].views} views  .`
             ulEl.appendChild(liEl);
+            vote.push(purchas[i].votes);
+            view.push(purchas[i].views);
+
         }
         alert("Thank you for your valuable time");
         lefImg.removeEventListener('click', clickshand);
         midImg.removeEventListener('click', clickshand);
         rigImg.removeEventListener('click', clickshand);
+        chartRender();
+    }
+}
+function finish() {
+    window.location = 'https://github.com/BasharTaamneh/BusMall/pull/1';
+
+}
+
+
+console.log(purchas);
+console.log("l="+LImg);
+console.log("m="+MImg);
+console.log("r="+RImg);
+
 
     }
     attempts++;
