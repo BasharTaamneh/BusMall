@@ -10,9 +10,11 @@ let resEl = document.getElementById('res');
 let purchas = [];
 let attempts = 0;
 let maxAttempts = 25;
+
 let purchaeName=[];
 let vote=[];
 let view =[];
+
 
 let purchasImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
 
@@ -24,6 +26,7 @@ function Survay(purchaseName) {
 
     purchas.push(this);
     purchaeName.push(this.purchaseName);
+
 }
 
 for (let i = 0; i < purchasImg.length; i++) {
@@ -35,6 +38,10 @@ function ranDex() {
      inds= (Math.floor(Math.random() * purchas.length));
     console.log("index= " + inds);
     return inds--;
+
+
+function ranDex() {
+    return Math.floor(Math.random() * purchas.length);
 }
 
 let LImg = ranDex();
@@ -45,6 +52,7 @@ let RImg = ranDex();
 
 function renderRanImg() {
     
+function renderRanImg() {
     LImg = ranDex();
     MImg = ranDex();
     RImg = ranDex();
@@ -55,6 +63,10 @@ function renderRanImg() {
         MImg = ranDex();
         RImg = ranDex();
         
+    while ((LImg === MImg) || (MImg === RImg) || (LImg === RImg)) {
+        LImg = ranDex();
+        MImg = ranDex();
+        RImg = ranDex();
     }
 
     lefImg.setAttribute('src', purchas[LImg].img);
@@ -64,12 +76,9 @@ function renderRanImg() {
     purchas[LImg].views++;
     purchas[MImg].views++;
 
-    
 }
 
 renderRanImg();
-
-
 
 lefImg.addEventListener('click', clickshand);
 midImg.addEventListener('click', clickshand);
@@ -122,6 +131,8 @@ let myChart = new Chart(ctx, {
 
 function clickshand(event) {
     attempts++;
+
+function clickshand(event) {
     if (attempts <= maxAttempts) {
         let clicked = event.target.id;
         console.log(clicked);
@@ -145,6 +156,7 @@ function clickshand(event) {
             ulEl.appendChild(liEl);
             vote.push(purchas[i].votes);
             view.push(purchas[i].views);
+
         }
         alert("Thank you for your valuable time");
         lefImg.removeEventListener('click', clickshand);
@@ -163,3 +175,16 @@ console.log(purchas);
 console.log("l="+LImg);
 console.log("m="+MImg);
 console.log("r="+RImg);
+
+
+    }
+    attempts++;
+}
+
+function finish(){
+    window.location ='https://github.com/BasharTaamneh/BusMall/pull/1';
+
+}
+console.log(purchas);
+
+
