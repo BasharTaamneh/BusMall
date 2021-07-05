@@ -163,3 +163,5 @@ console.log(purchas);
 console.log("l="+LImg);
 console.log("m="+MImg);
 console.log("r="+RImg);
+
+
