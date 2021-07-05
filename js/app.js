@@ -66,6 +66,7 @@ rigImg.addEventListener('click', clickshand);
 
 
 function clickshand(event) {
+    attempts++;
     if (attempts <= maxAttempts) {
         let clicked = event.target.id;
         console.log(clicked);
@@ -94,7 +95,6 @@ function clickshand(event) {
         rigImg.removeEventListener('click', clickshand);
 
     }
-    attempts++;
 }
 
 function finish(){
