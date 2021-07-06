@@ -85,7 +85,6 @@ rigImg.addEventListener('click', clickshand);
 function chartRender() {
 
     let ctx = document.getElementById('myChart').getContext('2d');
-    ctx.height = 100;
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
