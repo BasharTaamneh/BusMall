@@ -36,7 +36,11 @@ p{
 }
 p a{
     text-decoration: none;
+    border: 2px solid rgb(136, 255, 0);
     color:  rgba(0, 0, 0, 0.945);
+    background-color: rgba(65, 255, 128, 0.425);
+    border-radius: 10px;
+    padding: 10px;
 }
 #container img{
     border: 2px solid rgb(0, 255, 85);
@@ -45,7 +49,7 @@ p a{
     width: 300px;
     height: 250px;
     padding: 20px;
-    margin-left: 95px;
+    margin-left: 110px;
     margin-top: 100px;
     background-color: rgba(65, 255, 128, 0.425);
 image-rendering: optimizeQuality;
@@ -59,9 +63,13 @@ image-rendering: optimizeQuality;
 }
 #rescont li:nth-child(odd){
     margin-left: 225px;
+    position: relative;
+    top: 55px;
 }
 #rescont li:nth-child(even){
     margin-left: 750px;
+    position: relative;
+    top: 25px;
 }
 
 footer{

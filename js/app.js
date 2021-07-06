@@ -31,10 +31,13 @@ for (let i = 0; i < purchasImg.length; i++) {
     console.log(purchas[i]);
 }
 let inds
+let thisround=[];
+let lastround=[];
 function ranDex() {
-     inds= (Math.floor(Math.random() * purchas.length));
-    console.log("index= " + inds);
-    return inds--;
+    inds= (Math.floor(Math.random() * purchas.length ));
+    thisround=inds;
+     return thisround;
+    // console.log("index= " + inds);
 }
 
 let LImg = ranDex();
@@ -44,7 +47,9 @@ let RImg = ranDex();
 
 
 function renderRanImg() {
-    
+    if(lastround===thisround){
+        ranDex();}
+        
     LImg = ranDex();
     MImg = ranDex();
     RImg = ranDex();
@@ -63,12 +68,12 @@ function renderRanImg() {
     purchas[RImg].views++;
     purchas[LImg].views++;
     purchas[MImg].views++;
-
+        
     
 }
 
 renderRanImg();
-
+lastround=thisround;
 
 
 lefImg.addEventListener('click', clickshand);
@@ -80,6 +85,7 @@ rigImg.addEventListener('click', clickshand);
 function chartRender() {
 
     let ctx = document.getElementById('myChart').getContext('2d');
+    ctx.height = 100;
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -136,6 +142,7 @@ function clickshand(event) {
             purchas[RImg].votes++;
         }
         renderRanImg();
+        thisround=[];
     }
     else {
         let ulEl = document.getElementById('res');
