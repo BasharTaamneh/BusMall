@@ -13,7 +13,6 @@ let maxAttempts = 25;
 let purchaeName = [];
 let vote = [];
 let view = [];
-let locstor = [];
 
 let purchasImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
 
@@ -25,7 +24,6 @@ function Survay(purchaseName) {
 
     purchas.push(this);
     purchaeName.push(this.purchaseName);
-    locstor.push(this);
     console.log('ourches=', purchas);
 }
 
@@ -179,13 +177,12 @@ function readFRMLocStor() {
     if (normop !== null) {
         purchas = normop;
         for (let i = 0; i < purchas.length; i++) {
-            //save the last result to the new locstor[] 
+            purchas = normop;
+            //save the last result to the new purchas[] 
             //each time the local store reset him self for new local stor data
-            locstor = normop;
         }
     }
 }
-
 readFRMLocStor();
 //read the saved data in the local store
 // console.log(purchas);
