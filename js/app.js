@@ -33,9 +33,6 @@ function Survay(purchaseName) {
 }
 
 
-
-}
-
 for (let i = 0; i < purchasImg.length; i++) {
     new Survay(purchasImg[i]);
     console.log(purchas[i]);
