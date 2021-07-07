@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/reset.css"> -->
+    <title>BusMall</title>
 </head>
+
 <body>
-    
+    <header>
+        <h1>BusMall SURVEY</h1>
+    </header>
+
+    <main>
+        <p>please click on the branches that you most likely purchase, to make our services more satisfying</p>
+
+        <p>this survey will take exactly 5 minutes from you that will really help us to serve you as much as you will
+            prefer in the future, keep in mind that we really appreciate your time <br><br><br> <a href="#hr1"> start voting ⏬</a> </p>
+
+        <div id="container">
+            <hr id="hr1">
+            <br>
+            <br>
+            <img id="left" src="" alt="">
+            <img id="midil" src="" alt="">
+            <img id="right" src="" alt="">
+            <br>
+            <br>
+           <p> <a href="#rescont"> submit voting ⏬</a> </p>   
+             </div>
+     
+        <div id="rescont">
+            <br>
+            <ul id="res">
+            </ul>
+            <br>
+            <p> <a href="#fin"> show chart of voting ⏬</a> </p>
+            <br>
+        </div>
+        <canvas id="myChart" width="350" height="125"></canvas>
+    </main>
+
+    <footer>
+        <button id='fin' onclick="finish()">finished</button>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
 </body>
+
 </html>
+
+<!------>
