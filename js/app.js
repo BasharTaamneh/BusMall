@@ -176,11 +176,6 @@ function readFRMLocStor() {
     let normop = JSON.parse(strinTOnormop);
     if (normop !== null) {
         purchas = normop;
-        for (let i = 0; i < purchas.length; i++) {
-            purchas = normop;
-            //save the last result to the new purchas[] 
-            //each time the local store reset him self for new local stor data
-        }
     }
 }
 readFRMLocStor();
