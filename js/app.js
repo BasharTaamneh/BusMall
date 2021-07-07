@@ -16,7 +16,9 @@ let view =[];
 
 let purchasImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
 
+
 readFRMLocStor();
+
 
 function Survay(purchaseName) {
     this.purchaseName = purchaseName.split('.')[0];
@@ -26,9 +28,13 @@ function Survay(purchaseName) {
 
     purchas.push(this);
     purchaeName.push(this.purchaseName);
+
     console.log('ourches=',purchas);
 }
 
+
+
+}
 
 for (let i = 0; i < purchasImg.length; i++) {
     new Survay(purchasImg[i]);
@@ -72,6 +78,7 @@ function renderRanImg() {
     purchas[RImg].views++;
     purchas[LImg].views++;
     purchas[MImg].views++;
+
     
 }
 
@@ -149,11 +156,14 @@ function clickshand(event) {
         renderRanImg();
         thisround=[];
     }
+
     else {resrender();}
 }
 
         function resrender(){
-        
+
+    else {
+
         let ulEl = document.getElementById('res');
         for (let i = 0; i < purchas.length; i++) {
             let liEl = document.createElement('li');
@@ -162,8 +172,10 @@ function clickshand(event) {
             vote.push(purchas[i].votes);
             view.push(purchas[i].views);
         }
+
         
         savToLocStor();
+
         alert("Thank you for your valuable time");
         lefImg.removeEventListener('click', clickshand);
         midImg.removeEventListener('click', clickshand);
@@ -175,6 +187,7 @@ function finish() {
     window.location = 'https://github.com/BasharTaamneh/BusMall/pull/1';
 
 }
+
 
 function savToLocStor() {
     let data = JSON.stringify(purchas);
@@ -192,6 +205,7 @@ function readFRMLocStor() {
 
 
 // console.log(purchas ,"====");
+
 console.log(purchas);
 console.log("l="+LImg);
 console.log("m="+MImg);
