@@ -163,7 +163,7 @@ function resrender() {
 }
 
 function finish() {
-    window.location = 'https://bashartaamneh.github.io/BusMall/#fin';
+    window.location = 'https://bashartaamneh.github.io/BusMall';
 }
 
 function savToLocStor() {
