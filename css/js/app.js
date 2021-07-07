@@ -165,6 +165,7 @@ function resrender() {
 function finish() {
     window.location = 'https://bashartaamneh.github.io/BusMall';
     //update the link 
+    //1
 }
 
 function savToLocStor() {
