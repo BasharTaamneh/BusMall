@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+  }
+ 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  header {
+background-color: rgba(0, 0, 0, 0.74);
+position: sticky;
+top: 0px;
+color: rgb(236, 236, 236);
+padding: 1px;
+}
+h1 {
+    text-align: center;
+    font-size: 40px;
+  }
+
+body{
+    background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700751058.jpg);
+    /* background-repeat: no-repeat; */
+    /* height: 100%; */
+    width: 100%;
+    padding: auto;
+    top: 0;
+}
+
+p{
+    margin-top: 100px;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.945);
+}
+p a{
+    text-decoration: none;
+    border: 2px solid rgb(136, 255, 0);
+    color:  rgba(0, 0, 0, 0.945);
+    background-color: rgba(65, 255, 128, 0.425);
+    border-radius: 10px;
+    padding: 10px;
+}
+#container img{
+    border: 2px solid rgb(0, 255, 85);
+    display: inline-block;
+    border-radius: 20px;
+    width: 300px;
+    height: 250px;
+    padding: 20px;
+    margin-left: 110px;
+    margin-top: 100px;
+    background-color: rgba(65, 255, 128, 0.425);
+image-rendering: optimizeQuality;
+}
+
+#rescont li{
+    display:list-item;
+    width: 500px;
+    font-size: 22px;
+    font-weight: 900;
+}
+#rescont li:nth-child(odd){
+    margin-left: 225px;
+    position: relative;
+    top: 55px;
+}
+#rescont li:nth-child(even){
+    margin-left: 750px;
+    position: relative;
+    top: 25px;
+}
+
+footer{
+    color: rgb(236, 236, 236);
+    height: 100%;
+    width: 100%;
+    padding: 35px;
+    background-color: rgb(0, 0, 0);
+}
+footer #fin{
+    display: block;
+    /* border: 2px solid rgb(0, 255, 85); */
+    border-radius: 8px;
+position: relative;
+left: 600px;
+}
+
+
