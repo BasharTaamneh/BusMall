@@ -10,15 +10,12 @@ let resEl = document.getElementById('res');
 let purchas = [];
 let attempts = 0;
 let maxAttempts = 25;
-let purchaeName=[];
-let vote=[];
-let view =[];
+let purchaeName = [];
+let vote = [];
+let view = [];
+let locstor = [];
 
 let purchasImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
-
-
-readFRMLocStor();
-
 
 function Survay(purchaseName) {
     this.purchaseName = purchaseName.split('.')[0];
@@ -28,8 +25,8 @@ function Survay(purchaseName) {
 
     purchas.push(this);
     purchaeName.push(this.purchaseName);
-
-    console.log('ourches=',purchas);
+    locstor.push(this);
+    console.log('ourches=', purchas);
 }
 
 
@@ -37,13 +34,16 @@ for (let i = 0; i < purchasImg.length; i++) {
     new Survay(purchasImg[i]);
     console.log(purchas[i]);
 }
+
+
 let inds
-let thisround=[];
-let lastround=[];
+let thisround = [];
+let lastround = [];
+
 function ranDex() {
-    inds= (Math.floor(Math.random() * purchas.length ));
-    thisround=inds;
-     return thisround;
+    inds = (Math.floor(Math.random() * purchas.length));
+    thisround = inds;
+    return thisround;
     // console.log("index= " + inds);
 }
 
@@ -51,84 +51,72 @@ let LImg = ranDex();
 let MImg = ranDex();
 let RImg = ranDex();
 
-
-
 function renderRanImg() {
-    if(lastround===thisround){
-        ranDex();}
-        
+    if (lastround === thisround) {
+        ranDex();
+    }
     LImg = ranDex();
     MImg = ranDex();
     RImg = ranDex();
-
-    while ((LImg === MImg) || (MImg === RImg) || (LImg === RImg)  ) {
-       
+    while ((LImg === MImg) || (MImg === RImg) || (LImg === RImg)) {
         LImg = ranDex();
         MImg = ranDex();
         RImg = ranDex();
-        
     }
-
     lefImg.setAttribute('src', purchas[LImg].img);
     midImg.setAttribute('src', purchas[MImg].img);
     rigImg.setAttribute('src', purchas[RImg].img);
     purchas[RImg].views++;
     purchas[LImg].views++;
     purchas[MImg].views++;
-
-    
 }
 
+
 renderRanImg();
-lastround=thisround;
-
-
+lastround = thisround;
 lefImg.addEventListener('click', clickshand);
 midImg.addEventListener('click', clickshand);
 rigImg.addEventListener('click', clickshand);
 
-
-
 function chartRender() {
-
     let ctx = document.getElementById('myChart').getContext('2d');
     ctx.height = 100;
-let myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: purchaeName,
-        datasets: [{
-            label: '# of Votes',
-            data: vote,
-            backgroundColor: [
-                'rgba(50, 255, 150, 0.9)',
-            ],
-            borderColor: [
-                'rgba(40, 175, 175, 0.3)',
-            ],
-            borderWidth: 2
+    let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: purchaeName,
+            datasets: [{
+                label: '# of Votes',
+                data: vote,
+                backgroundColor: [
+                    'rgba(50, 255, 150, 0.9)',
+                ],
+                borderColor: [
+                    'rgba(40, 175, 175, 0.3)',
+                ],
+                borderWidth: 2
+            },
+            {
+                label: '# of views',
+                data: view,
+                backgroundColor: [
+                    'rgba(255, 255, 175)',
+                ],
+                borderColor: [
+                    'rgba(190, 150, 150, 0.8)',
+                ],
+
+                borderWidth: 2
+            }]
         },
-        {
-            label: '# of views',
-            data: view,
-            backgroundColor: [
-                'rgba(255, 255, 175)',
-            ],
-            borderColor: [
-                'rgba(190, 150, 150, 0.8)',
-            ],
-        
-            borderWidth: 2
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-});
+    });
 
 }
 
@@ -139,7 +127,7 @@ function clickshand(event) {
     attempts++;
     if (attempts <= maxAttempts) {
         let clicked = event.target.id;
-        console.log(clicked);
+
         if (event.target.id === 'left') {
             purchas[LImg].votes++;
         }
@@ -151,60 +139,57 @@ function clickshand(event) {
             purchas[RImg].votes++;
         }
         renderRanImg();
-        thisround=[];
+        thisround = [];
     }
 
-    else {resrender();}
+    else { resrender(); }
 }
 
-        function resrender(){
-
-        let ulEl = document.getElementById('res');
-        for (let i = 0; i < purchas.length; i++) {
-            let liEl = document.createElement('li');
-            liEl.textContent = `${purchas[i].purchaseName} has ${purchas[i].votes} votes and ${purchas[i].views} views  .`
-            ulEl.appendChild(liEl);
-            vote.push(purchas[i].votes);
-            view.push(purchas[i].views);
-   
-        }
-        
-        savToLocStor();
-
-        alert("Thank you for your valuable time");
-        lefImg.removeEventListener('click', clickshand);
-        midImg.removeEventListener('click', clickshand);
-        rigImg.removeEventListener('click', clickshand);
-        chartRender();
+function resrender() {
+    let ulEl = document.getElementById('res');
+    for (let i = 0; i < purchas.length; i++) {
+        let liEl = document.createElement('li');
+        liEl.textContent = `${purchas[i].purchaseName} has ${purchas[i].votes} votes and ${purchas[i].views} views  .`
+        ulEl.appendChild(liEl);
+        vote.push(purchas[i].votes);
+        view.push(purchas[i].views);
     }
+    savToLocStor();
+    alert("Thank you for your valuable time");
+    lefImg.removeEventListener('click', clickshand);
+    midImg.removeEventListener('click', clickshand);
+    rigImg.removeEventListener('click', clickshand);
+    chartRender();
+}
 
 function finish() {
     window.location = 'https://github.com/BasharTaamneh/BusMall/pull/1';
-
 }
-
 
 function savToLocStor() {
     let data = JSON.stringify(purchas);
     localStorage.setItem('Survay', data);
 }
-
+// call function savToLocStor() in the reasult render stage 
 function readFRMLocStor() {
     let strinTOnormop = localStorage.getItem('Survay');
-   let normop=JSON.parse(strinTOnormop);
-   if (normop !== null) {
-    purchas=normop; 
-    resrender();
+    let normop = JSON.parse(strinTOnormop);
+    if (normop !== null) {
+        purchas = normop;
+        for (let i = 0; i < purchas.length; i++) {
+            //save the last result to the new locstor[] 
+            //each time the local store reset him self for new local stor data
+            locstor = normop;
+        }
+    }
 }
-}
+
+readFRMLocStor();
+//read the saved data in the local store
+// console.log(purchas);
+// console.log("l=" + LImg);
+// console.log("m=" + MImg);
+// console.log("r=" + RImg);
 
 
-// console.log(purchas ,"====");
 
-console.log(purchas);
-console.log("l="+LImg);
-console.log("m="+MImg);
-console.log("r="+RImg);
-
-
-////
