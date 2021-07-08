@@ -35,24 +35,16 @@ for (let i = 0; i < purchasImg.length; i++) {
 
 
 let inds
-let thisround = [];
-let lastround = [];
-
 function ranDex() {
     inds = (Math.floor(Math.random() * purchas.length));
-    thisround = inds;
-    return thisround;
-    // console.log("index= " + inds);
+    return inds;
 }
 
 let LImg = ranDex();
 let MImg = ranDex();
 let RImg = ranDex();
-
 function renderRanImg() {
-    if (lastround === thisround) {
-        ranDex();
-    }
+
     LImg = ranDex();
     MImg = ranDex();
     RImg = ranDex();
@@ -60,18 +52,17 @@ function renderRanImg() {
         LImg = ranDex();
         MImg = ranDex();
         RImg = ranDex();
-    }
+    
+
     lefImg.setAttribute('src', purchas[LImg].img);
     midImg.setAttribute('src', purchas[MImg].img);
     rigImg.setAttribute('src', purchas[RImg].img);
     purchas[RImg].views++;
     purchas[LImg].views++;
     purchas[MImg].views++;
+    }
 }
-
-
 renderRanImg();
-lastround = thisround;
 lefImg.addEventListener('click', clickshand);
 midImg.addEventListener('click', clickshand);
 rigImg.addEventListener('click', clickshand);
