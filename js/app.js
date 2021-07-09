@@ -13,6 +13,7 @@ let maxAttempts = 25;
 let purchaeName = [];
 let vote = [];
 let view = [];
+let locstor = [];
 
 let purchasImg = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
 
@@ -24,6 +25,7 @@ function Survay(purchaseName) {
 
     purchas.push(this);
     purchaeName.push(this.purchaseName);
+    locstor.push(this);
     console.log('ourches=', purchas);
 }
 
@@ -35,16 +37,24 @@ for (let i = 0; i < purchasImg.length; i++) {
 
 
 let inds
+let thisround = [];
+let lastround = [];
+
 function ranDex() {
     inds = (Math.floor(Math.random() * purchas.length));
-    return inds;
+    thisround = inds;
+    return thisround;
+    // console.log("index= " + inds);
 }
 
 let LImg = ranDex();
 let MImg = ranDex();
 let RImg = ranDex();
-function renderRanImg() {
 
+function renderRanImg() {
+    if (lastround === thisround) {
+        ranDex();
+    }
     LImg = ranDex();
     MImg = ranDex();
     RImg = ranDex();
@@ -52,17 +62,18 @@ function renderRanImg() {
         LImg = ranDex();
         MImg = ranDex();
         RImg = ranDex();
-    
-
+    }
     lefImg.setAttribute('src', purchas[LImg].img);
     midImg.setAttribute('src', purchas[MImg].img);
     rigImg.setAttribute('src', purchas[RImg].img);
     purchas[RImg].views++;
     purchas[LImg].views++;
     purchas[MImg].views++;
-    }
 }
+
+
 renderRanImg();
+lastround = thisround;
 lefImg.addEventListener('click', clickshand);
 midImg.addEventListener('click', clickshand);
 rigImg.addEventListener('click', clickshand);
@@ -152,9 +163,7 @@ function resrender() {
 }
 
 function finish() {
-    window.location = 'https://bashartaamneh.github.io/BusMall';
-    //update the link 
-    //2
+    window.location = 'https://bashartaamneh.github.io/BusMall/';
 }
 
 function savToLocStor() {
@@ -167,8 +176,14 @@ function readFRMLocStor() {
     let normop = JSON.parse(strinTOnormop);
     if (normop !== null) {
         purchas = normop;
+        for (let i = 0; i < purchas.length; i++) {
+            //save the last result to the new locstor[] 
+            //each time the local store reset him self for new local stor data
+            locstor = normop;
+        }
     }
 }
+
 readFRMLocStor();
 //read the saved data in the local store
 // console.log(purchas);
